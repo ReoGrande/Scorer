@@ -6,3 +6,16 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
+import CoreData
+
+struct GameCreation : View {
+    @State var game: Item
+
+    var body: some View {
+        ZStack {
+            Color.red.opacity(0.2)
+        }
+    }
+}

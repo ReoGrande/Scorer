@@ -8,13 +8,19 @@
 import UIKit
 
 class GameViewController: UIViewController {
-
+    var currentGame: Game?
+    @IBOutlet weak var textLabel:UILabel?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    textLabel?.text = "Click the button…"
     }
-    
+
+    @IBAction func onButtonTap(sender: UIButton)
+    {
+    textLabel?.text = "Hello world!"
+    }
 
     /*
     // MARK: - Navigation

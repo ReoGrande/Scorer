@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Scorer
 //
-//  Created by user on 2/17/24.
+//  Created by Reo Ogundare on 2/17/24.
 //
 
 import SwiftUI
@@ -15,26 +15,72 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
+    @State var showingPopup = false // 1
+    @State var gameName = ""
+    @State var playerName = ""
+    @State var playerNames: [String] = []
+    @State var gameScores: [String] = []
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        GameView(currentGame: Game(item: item))
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                            Text(item.game_name ?? "Reo wuz here")
+                    }.onLongPressGesture {
+                        print(item.timestamp)
                     }
                 }
                 .onDelete(perform: deleteItems)
+            }.popover(isPresented: $showingPopup) {
+                VStack {
+                    Color.red.opacity(0.2)
+                    TextField("Player Name", text: $playerName)
+                    Button("Add Player") {
+                        withAnimation{
+                            playerNames.append(playerName.isEmpty ? "No Name" : playerName)
+                            gameScores.append("0")
+                            playerName = ""
+                            print(playerNames)
+                        }
+                    }
+                    List(playerNames, id: \.self) {
+                        player in
+                        withAnimation {
+                            Text(player)
+                        }
+                    }
+                    TextField("Game Name", text: $gameName)
+                    Button("Create Game") {
+                        //Game(item: newItem)
+                        let newItem = Item(context: viewContext)
+                        newItem.timestamp = Date()
+                        newItem.players_names = playerNames.joined(separator: " ")
+                        newItem.game_name = gameName
+                        newItem.game_scores = gameScores.joined(separator:" ")
+                        addItem(newItem)
+                        showingPopup = false
+                    }.onSubmit {
+                        gameName = ""
+                        playerNames = []
+                    }
+                }
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Games").bold()
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
+                    Button("Add Item", systemImage: "plus") {
+                        showingPopup = true // 2
                     }
                 }
             }
@@ -42,11 +88,8 @@ struct ContentView: View {
         }
     }
 
-    private func addItem() {
+    private func addItem(_ newItem: Item) {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
             do {
                 try viewContext.save()
             } catch {

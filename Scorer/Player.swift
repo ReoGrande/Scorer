@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Player: Hashable {
+    
+    let name: String
+    var score: Int
+}
