@@ -8,17 +8,18 @@
 import Foundation
 import SwiftUI
 
-class Game {
+class Game: ObservableObject {
     var name: String = ""
-    var players: [Player] = []
-//    var scores: [String] = []
-    
+    @Published var players: [Player] = []
+    let data: Item
+
     init(item: Item) {
+        data = item
         name = item.game_name ?? ""
         let tempPlayers = item.players_names?.components(separatedBy: " ") ?? []
         let tempScores = getScores(item.game_scores?.components(separatedBy: " ") ?? [], tempPlayers.count)
         for i in 0...tempPlayers.count-1 {
-            players.append(Player(name: tempPlayers[i], score: tempScores[i]))
+            players.append(Player(name: tempPlayers[i], score: tempScores[i],id: i))
         }
     }
     
@@ -34,9 +35,15 @@ class Game {
         return tempScores
     }
     
+    func updateScore(_ player: Player) {
+        if let row = self.players.firstIndex(where: {$0.id == player.id}) {
+            players[row].score = player.score
+        }
+    }
+
     init() {
         name = "Empty game"
         players = []
-//        scores = []
+        data = Item()
     }
 }

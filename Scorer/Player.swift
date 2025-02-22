@@ -11,4 +11,5 @@ struct Player: Hashable {
     
     let name: String
     var score: Int
+    let id: Int
 }
