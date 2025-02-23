@@ -10,7 +10,6 @@
 		CE79BFF12BDF40D900D2C621 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79BFF02BDF40D900D2C621 /* Player.swift */; };
 		CEBD29AC2BD57F4200F66582 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD29AB2BD57F4200F66582 /* Game.swift */; };
 		CEBD29AE2BD57FC800F66582 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD29AD2BD57FC800F66582 /* GameView.swift */; };
-		CEBD29B02BD57FE900F66582 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD29AF2BD57FE900F66582 /* GameViewController.swift */; };
 		CEBD29B22BD584F100F66582 /* GameCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD29B12BD584F100F66582 /* GameCreation.swift */; };
 		CEDF6B432B8144CF0011CA42 /* ScorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF6B422B8144CF0011CA42 /* ScorerApp.swift */; };
 		CEDF6B452B8144CF0011CA42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF6B442B8144CF0011CA42 /* ContentView.swift */; };
@@ -21,6 +20,7 @@
 		CEDF6B592B8144D30011CA42 /* ScorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF6B582B8144D30011CA42 /* ScorerTests.swift */; };
 		CEDF6B632B8144D30011CA42 /* ScorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF6B622B8144D30011CA42 /* ScorerUITests.swift */; };
 		CEDF6B652B8144D30011CA42 /* ScorerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF6B642B8144D30011CA42 /* ScorerUITestsLaunchTests.swift */; };
+		CEF263A52D6BA47A001F24A3 /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CEF263A42D6BA47A001F24A3 /* README.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,6 @@
 		CE79BFF02BDF40D900D2C621 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CEBD29AB2BD57F4200F66582 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		CEBD29AD2BD57FC800F66582 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		CEBD29AF2BD57FE900F66582 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		CEBD29B12BD584F100F66582 /* GameCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCreation.swift; sourceTree = "<group>"; };
 		CEDF6B3F2B8144CF0011CA42 /* Scorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDF6B422B8144CF0011CA42 /* ScorerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorerApp.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		CEDF6B5E2B8144D30011CA42 /* ScorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDF6B622B8144D30011CA42 /* ScorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorerUITests.swift; sourceTree = "<group>"; };
 		CEDF6B642B8144D30011CA42 /* ScorerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEF263A42D6BA47A001F24A3 /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +88,7 @@
 		CEDF6B362B8144CF0011CA42 = {
 			isa = PBXGroup;
 			children = (
+				CEF263A42D6BA47A001F24A3 /* README.rtf */,
 				CEDF6B412B8144CF0011CA42 /* Scorer */,
 				CEDF6B572B8144D30011CA42 /* ScorerTests */,
 				CEDF6B612B8144D30011CA42 /* ScorerUITests */,
@@ -114,7 +115,6 @@
 				CE79BFF02BDF40D900D2C621 /* Player.swift */,
 				CEBD29AB2BD57F4200F66582 /* Game.swift */,
 				CEBD29AD2BD57FC800F66582 /* GameView.swift */,
-				CEBD29AF2BD57FE900F66582 /* GameViewController.swift */,
 				CEDF6B462B8144D20011CA42 /* Assets.xcassets */,
 				CEDF6B4B2B8144D20011CA42 /* Persistence.swift */,
 				CEDF6B4D2B8144D20011CA42 /* Scorer.xcdatamodeld */,
@@ -254,6 +254,7 @@
 			files = (
 				CEDF6B4A2B8144D20011CA42 /* Preview Assets.xcassets in Resources */,
 				CEDF6B472B8144D20011CA42 /* Assets.xcassets in Resources */,
+				CEF263A52D6BA47A001F24A3 /* README.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +279,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEBD29B02BD57FE900F66582 /* GameViewController.swift in Sources */,
 				CEDF6B4C2B8144D20011CA42 /* Persistence.swift in Sources */,
 				CEBD29AC2BD57F4200F66582 /* Game.swift in Sources */,
 				CEDF6B4F2B8144D20011CA42 /* Scorer.xcdatamodeld in Sources */,

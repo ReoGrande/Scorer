@@ -25,26 +25,22 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    NavigationLink {
+                    NavigationLink(item.game_name ?? "Reo wuz here") {
                         GameView(currentGame: Game(item: item))
-                    } label: {
-                            Text(item.game_name ?? "Reo wuz here")
-                    }.onLongPressGesture {
-                        print(item.timestamp)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }.popover(isPresented: $showingPopup) {
-                VStack {
-                    Color.red.opacity(0.2)
+                Spacer()
+                Text("Create Game")
+                VStack(alignment: .center, spacing: 20) {
+                    Spacer()
                     TextField("Player Name", text: $playerName)
-                    Button("Add Player") {
-                        withAnimation{
-                            playerNames.append(playerName.isEmpty ? "No Name" : playerName)
-                            gameScores.append("0")
-                            playerName = ""
-                            print(playerNames)
+                        .onSubmit {
+                          addPlayer()
                         }
+                    Button("Add Player") {
+                        addPlayer()
                     }
                     List(playerNames, id: \.self) {
                         player in
@@ -53,20 +49,22 @@ struct ContentView: View {
                         }
                     }
                     TextField("Game Name", text: $gameName)
+                        .onSubmit {
+                            createGame()
+                        }
                     Button("Create Game") {
                         //Game(item: newItem)
-                        let newItem = Item(context: viewContext)
-                        newItem.timestamp = Date()
-                        newItem.players_names = playerNames.joined(separator: " ")
-                        newItem.game_name = gameName
-                        newItem.game_scores = gameScores.joined(separator:" ")
-                        addItem(newItem)
-                        showingPopup = false
+                        createGame()
                     }.onSubmit {
-                        gameName = ""
-                        playerNames = []
+                        DispatchQueue.main.async {
+                            gameName = ""
+                            playerNames = []
+                        }
                     }
+                    Spacer()
                 }
+                .background(Color.secondary.opacity(0.2))
+
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -76,9 +74,6 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem {
-//                    Button(action: addItem) {
-//                        Label("Add Item", systemImage: "plus")
-//                    }
                     Button("Add Item", systemImage: "plus") {
                         showingPopup = true // 2
                     }
@@ -86,6 +81,25 @@ struct ContentView: View {
             }
             Text("Select an item")
         }
+    }
+    
+    private func addPlayer() {
+        withAnimation{
+            playerNames.append(playerName.isEmpty ? "Player\(playerNames.count + 1)" : playerName)
+            gameScores.append("0")
+            playerName = ""
+            print(playerNames)
+        }
+    }
+    
+    private func createGame() {
+        let newItem = Item(context: viewContext)
+        newItem.timestamp = Date()
+        newItem.players_names = playerNames.joined(separator: " ")
+        newItem.game_name = gameName.isEmpty ? "NewGame \(newItem.timestamp!.formatted(.dateTime))" : gameName
+        newItem.game_scores = gameScores.joined(separator:" ")
+        addItem(newItem)
+        showingPopup = false
     }
 
     private func addItem(_ newItem: Item) {
